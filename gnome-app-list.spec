@@ -1,15 +1,16 @@
 Summary:	GNOME app list
 Summary(pl.UTF-8):	Lista aplikacji GNOME
 Name:		gnome-app-list
-Version:	1.0
+Version:	2.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Applications
-Source0:	https://download.gnome.org/sources/gnome-app-list/1.0/%{name}-%{version}.tar.xz
-# Source0-md5:	dbcb730311857a1de67f4f77dcbf4eb0
+Source0:	https://download.gnome.org/sources/gnome-app-list/2.0/%{name}-%{version}.tar.xz
+# Source0-md5:	ff2c92a4ca3e630363952769d8dce26b
 URL:		https://gitlab.gnome.org/GNOME/gnome-app-list
 BuildRequires:	libxml2-progs >= 2.0
 BuildRequires:	python3 >= 1:3
+BuildRequires:	rpmbuild(macros) >= 2.042
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 BuildArch:	noarch
@@ -31,14 +32,14 @@ Software (<https://gitlab.gnome.org/GNOME/gnome-software>).
 %setup -q
 
 %build
-%meson build
+%meson
 
-%ninja_build -C build
+%meson_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%ninja_install -C build
+%meson_install
 
 %clean
 rm -rf $RPM_BUILD_ROOT
